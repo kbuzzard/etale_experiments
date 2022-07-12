@@ -34,7 +34,7 @@ let h : algebra A B := f.to_algebra in
 ∀ {R R' : Type} [comm_ring R] [comm_ring R'], by exactI
 ∀ [algebra A R] [algebra A R'], by exactI
 -- and for all A-algebra morphisms φ : R' → R with square zero
-∀ {φ : R' →ₐ[A] R} (hφ : ∀ x : R', φ x = 0 → x^2 = 0),
+∀ {φ : R' →ₐ[A] R} (hφ1 : ∀ r : R, ∃ r' : R', φ r' = r) (hφ2 : ∀ x : R', φ x = 0 → x^2 = 0),
 -- composing with φ is a bijection Hom_A(B,R') → Hom_A(B, R)
 function.bijective (φ.comp : (B →ₐ[A] R') → (B →ₐ[A] R))
 

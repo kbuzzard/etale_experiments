@@ -1,8 +1,8 @@
 import tactic
 
--- I couldn't find this in mathlib
-
 variables {R A : Type*} [comm_semiring R] [semiring A] [algebra R A]
+
+-- I couldn't find this in mathlib
 
 lemma alg_hom.eq_of_id (f : R →ₐ[R] A) : f = algebra.of_id R A :=
 alg_hom.ext $ f.commutes
