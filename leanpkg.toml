@@ -1,0 +1,8 @@
+[package]
+name = "etale_experiments"
+version = "0.1"
+lean_version = "leanprover-community/lean:3.44.1"
+path = "src"
+
+[dependencies]
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "aadba9b283e04b296b349a2e7f47b6d9824af7f4"}
