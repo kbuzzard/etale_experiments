@@ -1,4 +1,5 @@
 import tactic
+import for_mathlib -- gives us new theorem `alg_hom.eq_of_id`
 
 /-!
 
@@ -24,14 +25,15 @@ let h : algebra A B := f.to_algebra in
 ∀ {R R' : Type} [comm_ring R] [comm_ring R'], by exactI
 ∀ [algebra A R] [algebra A R'], by exactI
 -- and for all A-algebra morphisms φ : R' → R with square zero
-∀ {φ : R' →ₐ[A] R} (hφ : ∀ x : R', φ x = 0 → x^2 = 0),
+∀ {φ : R' →ₐ[A] R} (hφ1 : ∀ r : R, ∃ r' : R', φ r' = r) (hφ2 : ∀ x : R', φ x = 0 → x^2 = 0),
 -- composing with φ is a bijection Hom_A(B,R') → Hom_A(B, R)
 function.surjective (φ.comp : (B →ₐ[A] R') → (B →ₐ[A] R))
 
 lemma is_formally_smooth_id : is_formally_smooth (ring_hom.id A : A →+* A) :=
 begin
-  intros R R' _ _ _ _ φ hφ,
-  sorry
+  intros R R' _ _ _ _ φ hφ1 hφ2,
+  resetI,
+  sorry,
 end
 
 variables {C : Type} [comm_ring C]
