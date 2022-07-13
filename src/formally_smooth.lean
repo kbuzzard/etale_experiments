@@ -75,7 +75,23 @@ begin
   specialize hψ hf1' hf2',
   letI : algebra B C := ψ.to_algebra,
   let g' : C →ₐ[B] R :=
-  { commutes' := begin sorry end,
+  { commutes' := begin 
+    intro,
+    refl, end,
     ..g },
-  sorry,
+  obtain ⟨τ, hτ⟩ := hψ g',
+  let τ' : C →ₐ[A] R' :=
+  { commutes' := begin intro r,
+      convert τ.commutes (φ r),
+      suffices : algebra.of_id A R' = σ.comp (algebra.of_id A B),
+      { rw alg_hom.ext_iff at this,
+        apply this, },
+      apply subsingleton.elim,
+    end,
+    ..τ, },
+  use τ',
+  ext,
+  change _ = g' x,
+  rw ← hτ,
+  refl,
 end
