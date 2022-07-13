@@ -33,12 +33,7 @@ let h : algebra A B := f.to_algebra in
 function.surjective (φ.comp : (B →ₐ[A] R') → (B →ₐ[A] R))
 
 lemma is_formally_smooth_id : is_formally_smooth (ring_hom.id A : A →+* A) :=
-begin
-  intros R R' _ _ _ _ φ _ _ ψ,
-  resetI,
-  use algebra.of_id A R',
-  apply subsingleton.elim,
-end
+λ R R' _ _ _ _ φ _ _ ψ, by resetI; exact ⟨algebra.of_id A R', subsingleton.elim _ _⟩
 
 variables {C : Type} [comm_ring C]
 
