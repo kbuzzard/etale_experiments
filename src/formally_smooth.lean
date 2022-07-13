@@ -29,7 +29,7 @@ let h : algebra A B := f.to_algebra in
 -- and for all A-algebra morphisms φ : R' → R with square zero
 ∀ {φ : R' →ₐ[A] R} (hφ1 : ∀ r : R, ∃ r' : R', φ r' = r) 
   (hφ2 : ∀ x y : R', φ x = 0 → φ y = 0 → x * y = 0),
--- composing with φ is a bijection Hom_A(B,R') → Hom_A(B, R)
+-- composing with φ is a surjection Hom_A(B,R') → Hom_A(B, R)
 function.surjective (φ.comp : (B →ₐ[A] R') → (B →ₐ[A] R))
 
 lemma is_formally_smooth_id : is_formally_smooth (ring_hom.id A : A →+* A) :=
