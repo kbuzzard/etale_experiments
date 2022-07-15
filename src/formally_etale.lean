@@ -36,9 +36,12 @@ begin
   cases hφ, --with hφsm hφur,
   cases hψ,-- with hψsm hψur,
   split,
-  apply is_formally_smooth_comp,
-  --convert hφ_left,
-  sorry,
+  { apply is_formally_smooth_comp,
+    { intros _ _ _ _ _ _ f,
+      apply hφ_left, },
+    sorry,    
+  },
+  { sorry },
 end
 
 -- composition of formally etale is formally etale
