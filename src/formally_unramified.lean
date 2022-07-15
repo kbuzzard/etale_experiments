@@ -24,7 +24,7 @@ def is_formally_unramified {A B : Type} [comm_ring A] [comm_ring B] (f : A →+*
 -- First let's make B into an A-algebra in the obvious way via f
 let h : algebra A B := f.to_algebra in
 -- The condition is: For all A-algebras R and R'
-∀ {R R' : Type} [comm_ring R] [comm_ring R'], by exactI
+∀ {{R R' : Type}} [comm_ring R] [comm_ring R'], by exactI
 ∀ [algebra A R] [algebra A R'], by exactI
 -- and for all A-algebra morphisms φ : R' → R with square zero
 ∀ {φ : R' →ₐ[A] R} (hφ1 : ∀ r : R, ∃ r' : R', φ r' = r) 
@@ -55,7 +55,7 @@ end
 
 variables {C : Type} [comm_ring C]
 
-lemma is_formally_unramified_comp {φ : A →+* B} (hφ : is_formally_unramified φ)
+lemma is_formally_unramified.comp {φ : A →+* B} (hφ : is_formally_unramified φ)
   {ψ : B →+* C} (hψ : is_formally_unramified ψ) : is_formally_unramified (ψ.comp φ) :=
 begin
  intros R R' _ _ _ _ f,

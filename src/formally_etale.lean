@@ -30,24 +30,14 @@ end
 
 variables {C : Type} [comm_ring C]
 
-lemma is_formally_etale_comp {φ : A →+* B} (hφ : is_formally_etale φ)
+lemma is_formally_etale.comp {φ : A →+* B} (hφ : is_formally_etale φ)
   {ψ : B →+* C} (hψ : is_formally_etale ψ) : is_formally_etale (ψ.comp φ) :=
 begin
-  cases hφ, --with hφsm hφur,
-  cases hψ,-- with hψsm hψur,
+  cases hφ with hφsm hφur,
+  cases hψ with hψsm hψur,
   split,
-  { apply is_formally_smooth_comp,
-    { intros _ _ _ _ _ _ f,
-      apply hφ_left, },
-    { intros _ _ _ _ _ _ f,
-      apply hψ_left, },    
-  },
-  { apply is_formally_unramified_comp,
-    { intros _ _ _ _ _ _ f,
-      apply hφ_right, },
-    { intros _ _ _ _ _ _ f,
-      apply hψ_right, },    
-  },
+  { exact is_formally_smooth_comp hφsm hψsm, },
+  { exact is_formally_unramified.comp hφur hψur, },
 end
 
 -- composition of formally etale is formally etale
