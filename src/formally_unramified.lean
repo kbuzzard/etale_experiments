@@ -6,7 +6,7 @@ import for_mathlib -- gives us new theorem `alg_hom.eq_of_id`
 # Formally unramified morphisms
 
 A ring morphism `A →+* B` between commutative rings `A` and `B` is *formally unramified*
-if for every square-zero extension of A-algebras `R' →+* R`
+if for every surjective square-zero extension of A-algebras `R' →+* R`
 (meaning that the kernel I satisties I² = 0)
 the natural map Hom_A(B,R') → Hom_A(B,R) is injective.
 
@@ -17,7 +17,7 @@ variables {A B : Type} [comm_ring A] [comm_ring B]
 
 --set_option pp.notation false
 
-/-- A ring homomorphism `f : A → B` is *formally unramified* if for every equare zero
+/-- A ring homomorphism `f : A → B` is *formally unramified* if for every surjective square zero
 morphism `φ : R → R'` of A-algebras, the natural map Hom_A(B,R') → Hom_A(B, R) is
 an injection. -/
 def is_formally_unramified {A B : Type} [comm_ring A] [comm_ring B] (f : A →+* B) : Prop :=
@@ -61,19 +61,18 @@ begin
  intros R R' _ _ _ _ f,
  intros hf1 hf2,
   unfold function.injective,
-  intros a₁ a₂ hyp, --We had failed to introduce the hypothesis here before!
+  intros a₁ a₂ hyp, 
   letI : algebra A B := φ.to_algebra,
   letI : algebra A C := (ψ.comp φ).to_algebra,
   let ψ' : B →ₐ[A] C :=
   { commutes' := λ r, rfl, -- definitional abuse!
     ..ψ },
 have h_5: f.comp (a₁.comp ψ') =  f.comp (a₂.comp ψ'),
-  begin --I can prove this now because we introduced hyp!
+  begin 
   rw ← alg_hom.comp_assoc,
   rw ← alg_hom.comp_assoc,
   rw hyp, 
   end,
- --unfold function.injective at hφ,
  have h_6: a₁.comp ψ' =  a₂.comp ψ', -- as phi is formally unramified
   begin
   apply hφ hf1 hf2,
