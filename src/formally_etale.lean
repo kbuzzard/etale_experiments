@@ -39,9 +39,15 @@ begin
   { apply is_formally_smooth_comp,
     { intros _ _ _ _ _ _ f,
       apply hφ_left, },
-    sorry,    
+    { intros _ _ _ _ _ _ f,
+      apply hψ_left, },    
   },
-  { sorry },
+  { apply is_formally_unramified_comp,
+    { intros _ _ _ _ _ _ f,
+      apply hφ_right, },
+    { intros _ _ _ _ _ _ f,
+      apply hψ_right, },    
+  },
 end
 
 -- composition of formally etale is formally etale
