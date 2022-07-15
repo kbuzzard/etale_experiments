@@ -6,7 +6,7 @@ import for_mathlib -- gives us new theorem `alg_hom.eq_of_id`
 # Formally smooth morphisms
 
 A ring morphism `A →+* B` between commutative rings `A` and `B` is *formally smooth*
-if for every square-zero extension of A-algebras `R' →+* R`
+if for every surjective square-zero extension of A-algebras `R' →+* R`
 (meaning that the kernel I satisties I² = 0)
 the natural map Hom_A(B,R') → Hom_A(B,R) is surjective.
 
@@ -15,9 +15,7 @@ the natural map Hom_A(B,R') → Hom_A(B,R) is surjective.
 -- Let A and B be commutative rings
 variables {A B : Type} [comm_ring A] [comm_ring B]
 
---set_option pp.notation false
-
-/-- A ring homomorphism `f : A → B` is *formally smooth* if for every equare zero
+/-- A ring homomorphism `f : A → B` is *formally smooth* if for every surjective square zero
 morphism `φ : R → R'` of A-algebras, the natural map Hom_A(B,R') → Hom_A(B, R) is
 a surjection. -/
 def is_formally_smooth {A B : Type} [comm_ring A] [comm_ring B] (f : A →+* B) : Prop :=
