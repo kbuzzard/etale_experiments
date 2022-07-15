@@ -33,13 +33,11 @@ variables {C : Type} [comm_ring C]
 lemma is_formally_etale_comp {φ : A →+* B} (hφ : is_formally_etale φ)
   {ψ : B →+* C} (hψ : is_formally_etale ψ) : is_formally_etale (ψ.comp φ) :=
 begin
-  cases hφ with hφsm hφur,
-  cases hψ with hψsm hψur,
-  resetI,
+  cases hφ, --with hφsm hφur,
+  cases hψ,-- with hψsm hψur,
   split,
   apply is_formally_smooth_comp,
-  resetI,
-  exact hφsm,
+  --convert hφ_left,
   sorry,
 end
 
